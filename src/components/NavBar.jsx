@@ -1,20 +1,18 @@
 import React from "react";
 
-const NavBar = ({ categories, onCategoryClick }) => {
+const NavBar = ({ setFilter }) => {
   return (
     <nav className="navbar">
       <h1>Armando Esteban Quito</h1>
-      <ul className="category-list">
-        {categories.map((category, index) => (
-          <li key={index} className="category-item">
-            <button onClick={() => onCategoryClick(category)}>
-              {category}
-            </button>
-          </li>
-        ))}
+      <ul>
+        <li onClick={() => setFilter("All")}>All</li>
+        <li onClick={() => setFilter("Sillas")}>Sillas</li>
+        <li onClick={() => setFilter("Mesas")}>Mesas</li>
+        <li onClick={() => setFilter("Estanterías")}>Estanterías</li>
+        <li onClick={() => setFilter("Sofás")}>Sofás</li>
       </ul>
     </nav>
   );
-};
+}
 
 export default NavBar;
