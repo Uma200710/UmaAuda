@@ -1,17 +1,18 @@
-import React from 'react';
+import React from "react";
 
-const NavBar = ({ cartItemCount }) => {
+const NavBar = ({ categories, onCategoryClick }) => {
   return (
     <nav className="navbar">
       <h1>Armando Esteban Quito</h1>
-      <ul className="categories">
-        <li>Categoría 1</li>
-        <li>Categoría 2</li>
-        <li>Categoría 3</li>
+      <ul className="category-list">
+        {categories.map((category, index) => (
+          <li key={index} className="category-item">
+            <button onClick={() => onCategoryClick(category)}>
+              {category}
+            </button>
+          </li>
+        ))}
       </ul>
-      <div className="cart">
-        <span>Carrito ({cartItemCount})</span>
-      </div>
     </nav>
   );
 };

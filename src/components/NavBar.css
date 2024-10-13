@@ -1,33 +1,43 @@
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #f4f4f4;
-    padding: 1rem;
-  }
-  
-  .brand {
-    font-size: 1.5rem;
-    font-weight: bold;
-  }
-  
-  .nav-links {
-    list-style: none;
-    display: flex;
-    gap: 2rem;
-  }
-  
-  .nav-links li {
-    text-decoration: none;
-  }
-  
-  .nav-links a {
-    text-decoration: none;
-    color: #333;
-    font-size: 1.1rem;
-  }
-  
-  .nav-links a:hover {
-    color: #007BFF;
-  }
-  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #ddd;
+}
+
+.navbar h1 {
+  font-size: 24px;
+  color: #333;
+}
+
+.category-list {
+  list-style-type: none;
+  display: flex;
+  gap: 20px;
+}
+
+.category-item button {
+  background-color: #007bff;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.category-item button:hover {
+  background-color: #0056b3;
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+.category-item button:active {
+  background-color: #003d80;
+  transform: translateY(0);
+}
