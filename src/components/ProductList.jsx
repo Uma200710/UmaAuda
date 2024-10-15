@@ -1,21 +1,14 @@
-import React from "react";
-import ProductCard from "./ProductCard";
+import { Link } from 'react-router-dom';
 
-const ProductList = ({ products, addToCart }) => {
+const ProductCard = ({ product }) => {
   return (
-    <section className="product-list">
-      {products.map(product => (
-        <ProductCard
-          key={product.id}
-          name={product.name}
-          image={product.image}
-          price={product.price}
-          description={product.description}
-          addToCart={addToCart} // Pasamos la función para agregar al carrito
-        />
-      ))}
-    </section>
+    <div>
+      <Link to={`/item/${product.id}`}>
+        <h3>{product.name}</h3>
+        <p>{product.description}</p>
+      </Link>
+    </div>
   );
-}
+};
 
-export default ProductList;
+export default ProductCard;

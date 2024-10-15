@@ -1,16 +1,11 @@
-import React from "react";
+import { Link } from 'react-router-dom';
 
-const NavBar = ({ setFilter }) => {
+function NavBar() {
   return (
-    <nav className="navbar">
-      <h1>Armando Esteban Quito</h1>
-      <ul>
-        <li onClick={() => setFilter("All")}>All</li>
-        <li onClick={() => setFilter("Sillas")}>Sillas</li>
-        <li onClick={() => setFilter("Mesas")}>Mesas</li>
-        <li onClick={() => setFilter("Estanterías")}>Estanterías</li>
-        <li onClick={() => setFilter("Sofás")}>Sofás</li>
-      </ul>
+    <nav>
+      <Link to='/'>Armando</Link>
+      <Link to='/category/category1'>Category 1</Link>
+      <Link to='/category/category2'>Category 2</Link>
     </nav>
   );
 }
