@@ -1,28 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
+import products from '../data/products';
 
 const ItemDetailContainer = () => {
   const { id } = useParams();
-  const [product, setProduct] = useState(null);
-
-  useEffect(() => {
-    const fetchProduct = async () => {
-      const response = await fetch(`path/to/your/api/${id}`);
-      const data = await response.json();
-      setProduct(data);
-    };
-
-    fetchProduct();
-  }, [id]);
-
-  if (!product) {
-    return <div>Loading...</div>;
-  }
+  const product = products.find(p => p.id === id);
 
   return (
     <div>
-      <h2>{product.name}</h2>
-      <p>{product.description}</p>
+      {product ? (
+        <>
+          <h2>{product.name}</h2>
+          <img src={product.image} alt={product.name} width="200" />
+          <p>{product.description}</p>
+          <p>Precio: ${product.price}</p>
+        </>
+      ) : (
+        <p>Producto no encontrado</p>
+      )}
     </div>
   );
 };
