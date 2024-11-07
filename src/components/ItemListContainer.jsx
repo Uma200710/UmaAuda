@@ -1,24 +1,16 @@
-// ItemListContainer.jsx
 import React from 'react';
 import products from '../data/products';
-import { useCartContext } from '../context/CartContext';
+import Item from './Item';
+import { useParams } from 'react-router-dom';
 
 const ItemListContainer = () => {
-    const { addToCart } = useCartContext();
+    const { id } = useParams();
+    const filteredProducts = id ? products.filter(p => p.category === id) : products;
 
     return (
-        <div className="item-list-container">
-            {products.map((product) => (
-                <div className="product-card" key={product.id}>
-                    <img src={product.image} alt={product.name} />
-                    <h3>{product.name}</h3>
-                    <p>{product.description}</p>
-                    <p>${product.price}</p>
-                    <p>Stock: {product.stock}</p>
-                    <button onClick={() => addToCart(product)} disabled={product.stock === 0}>
-                        {product.stock > 0 ? "Agregar al carrito" : "Sin stock"}
-                    </button>
-                </div>
+        <div className="item-list">
+            {filteredProducts.map(product => (
+                <Item key={product.id} product={product} />
             ))}
         </div>
     );

@@ -1,31 +1,22 @@
-// Cart.jsx
 import React from 'react';
 import { useCartContext } from '../context/CartContext';
 
 const Cart = () => {
-    const { cart, removeFromCart, clearCart } = useCartContext();
+    const { cart, removeOneFromCart, isCartOpen, totalPrice, toggleCart } = useCartContext();
 
     return (
-        <div className="cart">
-            <h2>Carrito de Compras</h2>
-            {cart.length === 0 ? (
-                <p>Tu carrito está vacío</p>
-            ) : (
-                <div>
-                    {cart.map((item) => (
-                        <div key={item.id} className="cart-item">
-                            <img src={item.image} alt={item.name} />
-                            <div>
-                                <h4>{item.name}</h4>
-                                <p>Precio: ${item.price}</p>
-                                <p>Cantidad: {item.quantity}</p>
-                                <button onClick={() => removeFromCart(item.id)}>Eliminar</button>
-                            </div>
-                        </div>
-                    ))}
-                    <button onClick={clearCart}>Vaciar Carrito</button>
+        <div className={`cart ${isCartOpen ? 'cart-open' : ''}`}>
+            <button onClick={toggleCart} className="close-cart">Close</button>
+            <h3>Shopping Cart</h3>
+            {cart.map((item) => (
+                <div key={item.id} className="cart-item">
+                    <img src={item.image} alt={item.name} />
+                    <p>{item.name}</p>
+                    <p>Quantity: {item.quantity}</p>
+                    <button onClick={() => removeOneFromCart(item.id)}>-</button>
                 </div>
-            )}
+            ))}
+            <h4>Total Price: ${totalPrice}</h4>
         </div>
     );
 };
