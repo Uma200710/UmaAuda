@@ -1,24 +1,30 @@
 import React from 'react';
-import { useCartContext } from '../context/CartContext';
 
-const Cart = () => {
-    const { cart, removeOneFromCart, isCartOpen, totalPrice, toggleCart } = useCartContext();
+const Cart = ({ cart, removeFromCart, handleCheckout }) => {
+  const totalPrice = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
-    return (
-        <div className={`cart ${isCartOpen ? 'cart-open' : ''}`}>
-            <button onClick={toggleCart} className="close-cart">Close</button>
-            <h3>Shopping Cart</h3>
-            {cart.map((item) => (
-                <div key={item.id} className="cart-item">
-                    <img src={item.image} alt={item.name} />
-                    <p>{item.name}</p>
-                    <p>Quantity: {item.quantity}</p>
-                    <button onClick={() => removeOneFromCart(item.id)}>-</button>
-                </div>
-            ))}
-            <h4>Total Price: ${totalPrice}</h4>
-        </div>
-    );
+  return (
+    <div className="cart">
+      <h2>Carrito</h2>
+      <ul>
+        {cart.map((item) => (
+          <li key={item.id}>
+            {item.name} - {item.quantity} x ${item.price}
+            <button 
+              onClick={() => removeFromCart(item.id)} 
+              className="remove-item-button"
+            >
+              Eliminar
+            </button>
+          </li>
+        ))}
+      </ul>
+      <p>Total: ${totalPrice}</p>
+      <button onClick={handleCheckout} className="checkout-button">
+        Finalizar compra
+      </button>
+    </div>
+  );
 };
 
 export default Cart;
